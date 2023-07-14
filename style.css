@@ -3,12 +3,64 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
     font-family: Arial, sans-serif;
 }
+
+.container_row {
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, sans-serif;
+    margin: 40px
+}
+
+
 body {
      background-color: antiquewhite;
 }
+
+#label-container {
+    /* Задаем размеры и отступы */
+    width: 300px;
+    height: 200px;
+    padding: 10px;
+    margin: 10px;
+    
+    /* Задаем шрифт и выравнивание текста */
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    
+    }
+    
+    /* Задаем цвета для каждого подэлемента */
+    .winter {
+        margin: 2px;
+        background-color: rgb(0, 153, 255);
+        border-radius: 10px;
+        padding: 10px;
+        }
+        
+        .spring {
+        margin: 2px;
+        background-color: #865492;
+        border-radius: 10px;
+        padding: 10px;
+        }
+        
+        .summer {
+        margin: 2px;
+        background-color: rgb(85, 134, 85);
+        border-radius: 10px;
+        padding: 10px;
+        }
+        
+        .autumn {
+        margin: 2px;
+        background-color: rgb(255, 197, 88);
+        border-radius: 10px;
+        padding: 10px;
+        }
+
 
 input {
     background-color: #f4511e;
@@ -17,7 +69,7 @@ input {
     padding: 16px 32px;
     text-align: center;
     font-size: 16px;
-    margin: auto;
+    margin: 16px;
     opacity: 0.6;
     transition: 0.3s;
     display: inline-block;
@@ -29,37 +81,32 @@ input:hover {opacity: 1}
 
 img {
     display: block;
-    margin: 10px;
-    max-width: 50%; 
-    height: 50%; 
+    margin: 3px;
+    max-width: 30%; 
+    height: 30%; 
   }
 
 
 button {
-    /* Задаем размеры и отступы */
     width: 150px;
     height: 50px;
     padding: 10px;
     margin: 10px;
 
-    /* Задаем цвет фона и текста */
+
     background-color: #81d683;
     color: white;
 
-    /* Задаем границу и скругление углов */
     border: none;
     border-radius: 10px;
 
-    /* Задаем шрифт и выравнивание текста */
     font-family: Arial, sans-serif;
     font-size: 20px;
     text-align: center;
 
-    /* Задаем эффект при наведении курсора */
     cursor: pointer;
     }
 
     button:hover {
-    /* Меняем цвет фона при наведении */
     background-color: #3E8E41;
 }
