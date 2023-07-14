@@ -16,11 +16,13 @@
     <div id="webcam-container"></div>
     <div class="container_column">
       <h1>Узнай свой цветотип</h1>
-      <p>Загрузите своё фото для определения:</p>
+      <p>Загрузите изображение для распознавания:</p>
       <input type="file" id="file-input" accept="image/*">
-      <img id="image-display">
+      <div class="container_row">
+        <img id="image-display">
+        <div id="label-container"></div>
+      </div>
       <button type="button" onclick="init()">Запустить</button>
-      <div id="label-container"></div>
     </div>
 
 
@@ -64,11 +66,17 @@
           for (let i = 0; i < maxPredictions; i++) { // and class labels
               labelContainer.appendChild(document.createElement("div"));
           }
+        var children = labelContainer.children;
+        children[0].setAttribute("class", "winter");
+        children[1].setAttribute("class", "spring");
+        children[2].setAttribute("class", "summer");
+        children[3].setAttribute("class", "autumn");
+
+        async function loop() {
+                await predict();
+    }
       }
-  
-  async function loop() {
-          await predict();
-      }
+
 
       // run the webcam image through the image model
       async function predict() {
@@ -80,5 +88,6 @@
               labelContainer.childNodes[i].innerHTML = classPrediction;
           }
       }
+
   </script>
 </html>
