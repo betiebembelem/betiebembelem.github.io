@@ -1,0 +1,65 @@
+.container_column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+body {
+     background-color: antiquewhite;
+}
+
+input {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+input:hover {opacity: 1}
+
+img {
+    display: block;
+    margin: 10px;
+    max-width: 50%; 
+    height: 50%; 
+  }
+
+
+button {
+    /* Задаем размеры и отступы */
+    width: 150px;
+    height: 50px;
+    padding: 10px;
+    margin: 10px;
+
+    /* Задаем цвет фона и текста */
+    background-color: #81d683;
+    color: white;
+
+    /* Задаем границу и скругление углов */
+    border: none;
+    border-radius: 10px;
+
+    /* Задаем шрифт и выравнивание текста */
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+
+    /* Задаем эффект при наведении курсора */
+    cursor: pointer;
+    }
+
+    button:hover {
+    /* Меняем цвет фона при наведении */
+    background-color: #3E8E41;
+}
