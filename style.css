@@ -87,14 +87,18 @@ img {
   }
 
 #word {
-    display: block;
+    display: none; 
     background-color: #f4511e;
     border: none;
     color: white;
     padding: 16px 32px;
     text-align: left;
     font-size: 20px;
-}
+    }
+    
+    #word:not(:empty) {
+    display: block; 
+    }
 
 button {
     width: 150px;
