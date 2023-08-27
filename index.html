@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+</head>
+<body>
 
+    <div id="webcam-container"></div>
+    <div class="container_column">
+      <h1>Узнай свой цветотип</h1>
+      <p>Загрузите изображение для распознавания:</p>
+      <input type="file" id="file-input" accept="image/*">
+      <button type="button" onclick="init()">Запустить</button>
+      <div class="container_row">
+        <img id="image-display">
+        <div id="label-container"></div>
+      </div>
+      <div id="word"></div>
+    </div>
+
+
+</body>
+
+<script type="text/javascript">
+  var input = document.getElementById("file-input");
+  var img = document.getElementById("image-display");
+  var word = document.getElementById("word");
+
+  input.addEventListener("change", function() {
+  var file = this.files[0];
+  if (file && file.type.startsWith("image/")) {
+  var reader = new FileReader();
+  reader.addEventListener("load", function() {
+  img.src = this.result;
+  });
+  reader.readAsDataURL(file);
+  }
+  })
+  //Machine
+  const URL = "https://teachablemachine.withgoogle.com/models/jYETaHVp_/";
+  let model, webcam, labelContainer, maxPredictions;
+  var maxNumber = 0;
+  var maxWord;
+  async function init() {
+          const modelURL = URL + "model.json";
+          const metadataURL = URL + "metadata.json";
+
+
+
+          // load the model and metadata
+          // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+          // or files from your local hard drive
+          // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+          model = await tmImage.load(modelURL, metadataURL);
+          maxPredictions = model.getTotalClasses();
+
+          // Convenience function to setup a webcam
+          const flip = true; // whether to flip the webcam
+          window.requestAnimationFrame(predict);
+
+          // append elements to the DOM
+          labelContainer = document.getElementById("label-container");
+          for (let i = 0; i < maxPredictions; i++) { // and class labels
+              labelContainer.appendChild(document.createElement("div"));
+          }
+        var children = labelContainer.children;
+        children[0].setAttribute("class", "winter");
+        children[1].setAttribute("class", "spring");
+        children[2].setAttribute("class", "autumn");
+        children[3].setAttribute("class", "summer");
+
+
+
+
+
+
+  }
+
+      // run the webcam image through the image model
+      async function predict() {
+        maxNumber = 0;
+          // predict can take in an image, video or canvas html element
+          const prediction = await model.predict(img);
+          for (let i = 0; i < maxPredictions; i++) {
+              let predictionClass = prediction[i].className
+              let predictionNum = prediction[i].probability.toFixed(2)
+              const classPrediction =
+                  predictionClass + ": " + predictionNum;
+              labelContainer.childNodes[i].innerHTML = classPrediction;
+              if (predictionNum > maxNumber) {
+                maxNumber = predictionNum
+                maxWord = prediction[i].className
+              }
+          }
+          word.innerHTML = "Ваш цветотип: " + maxWord
+      }
+  </script>
+</html>
